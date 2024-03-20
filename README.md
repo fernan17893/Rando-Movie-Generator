@@ -8,6 +8,7 @@ Rando utilizes the [The Movie Database (TMDb) API](https://www.themoviedb.org/do
 
 - **Random Movie Generation:** Click the "Generate" button to get a random movie suggestion.
 - **Genre Filtering:** Optionally filter movies by selecting a specific genre.
+- **Favorites:** Save your favorite films generated or films you want to watch.
 
 ## Technologies Used
 
@@ -24,6 +25,7 @@ Rando utilizes the [The Movie Database (TMDb) API](https://www.themoviedb.org/do
 * Each movie suggestion includes the movie title, release date, poster, and overview.
 * Click on the movie poster for a direct link to the movie's IMDb page.
 4. Optionally filter movies by selecting a specific genre!
+5. Click on the plus(+) sign to add films to your favorites!
 
 ## Installation
 
