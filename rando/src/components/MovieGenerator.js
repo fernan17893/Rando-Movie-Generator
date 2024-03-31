@@ -1,5 +1,5 @@
-// MovieGenerator.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import MovieDetails from './MovieDetails';
 import MoviePoster from './MoviePoster';
 import LoadingSpinner from './LoadingSpinner';
@@ -8,24 +8,86 @@ import defaultPoster from '../assets/no-poster-available.jpg';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import '../index.css';
+import { collection, addDoc } from 'firebase/firestore';
+import MovieSearch from './MovieSearch';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import logo from '../assets/logo.png';
+
 
 function MovieGenerator() {
   const [movieData, setMovieData] = useState({
-    title: 'The Mask',
-    genre: 'Action, Comedy, Crime',
-    year: 1994,
-    actors: 'Jim Carrey, Cameron Diaz, Peter Rieger',
-    plot:
-      "Timid bank clerk, Stanley Ipkiss (Jim Carrey). Unfortunately, he's too gentle, and is unable to handle confrontations. After one of the worst days, he finds a mask which depicts Loki, the Norse god of mischief.",
-    runtime: '3 min',
+    title: <strong>Welcome to Rando!</strong>,
+    genre: `• Click on Generate to get started!`,
+    year: `• Use the filter button to filter by genre`,
+    actors: `• Click on the movie poster to go to the movie IMDB page`,
+    plot: `• Click on the page title to log out and return to the login page`,
+    runtime: '',
     poster: defaultPoster,
   });
 
   const [isMatching, setIsMatching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState('');
+  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+  const [buttonPlusClass, setButtonPlusClass] = useState("");
+  
 
   const apiKey = '08396464e93e24a2d2e4e071a16d2788';
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+      return () => {
+        unsubscribe();
+    };
+  }, []);
+
+ 
+
+  const handleSearch = async (searchQuery) => {
+    try {
+      setIsLoading(true);
+
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=1&include_adult=false`;
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (response.ok && data && data.results && data.results.length > 0) {
+        const movie = data.results[0];
+        const validMovieData = {
+          title: movie.title,
+          year: new Date(movie.release_date).getFullYear(),
+          actors: '',
+          plot: movie.overview,
+          runtime: `${movie.runtime} min`,
+          poster: movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : defaultPoster,
+          imdbId: movie.imdb_id,
+        };
+        setMovieData(validMovieData);
+        console.log('Your movie is: '+ validMovieData.title, validMovieData);
+      } else {
+        setMovieData({
+          title: 'No movie found',
+          genre: '',
+          year: '',
+          actors: '',
+          plot: '',
+          runtime: '',
+          poster: defaultPoster,
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const skip = () => {
     generate();
@@ -68,10 +130,8 @@ function MovieGenerator() {
         }
       } while (!validMovieData || (isMatching && !validMovieData.genre.toLowerCase().includes(selectedGenre.toLowerCase())));
       
-      
-
       setMovieData(validMovieData);
-      console.log(validMovieData);
+      console.log('Your movie is: '+ validMovieData.title, validMovieData);
     } catch (error) {
       console.error('Error:', error);
       skip();
@@ -86,18 +146,7 @@ function MovieGenerator() {
     return s;
   };
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        console.log('Logout successful');
-      })
-      .catch((error) => {
-        // An error happened.
-        console.error('Logout error:', error);
-      });
-    console.log('Logout clicked');
-  };
+
 
   const handleGenreSelect = (selectedGenre) => {
     setSelectedGenre(selectedGenre);
@@ -109,36 +158,114 @@ function MovieGenerator() {
       setIsMatching(false);
       generate();
     }
+  };
 
+  const addToFavorites = async (validMovieData) => {
+    try {
+      setButtonPlusClass("button-plus-animate");
+      setTimeout(() => setButtonPlusClass(""), 1000);
+
+      const userId = auth.currentUser.uid;
+      const favoritesRef = collection(db, 'users', userId, 'favorites');
+
+      const { title, genre, year, actors, plot, runtime, poster, imdbId } = movieData;
+
+      const movieToAdd = {
+        title,
+        genre,
+        year,
+        actors,
+        plot,
+        runtime,
+        poster,
+        imdbId,
+      };
+
+      await addDoc(favoritesRef, movieToAdd);
+
+      console.log('Movie added to favorites:', movieToAdd);
+    } catch (error) {
+      console.error('Error adding movie to favorites:', error);
+    }
+  };
+
+  const handleProfileMenuSelect = (eventKey) => {
+    if (eventKey === 'favorites') {
+      navigate('/favoritemovies');
+    } else if (eventKey === 'logout') {
+      signOut(auth)
+        .then(() => {
+          console.log('Logout successful');
+        })
+        .catch((error) => {
+          console.error('Logout error:', error);
+        });
+    }
   };
 
 
+
   return (
-    <div className="container">
-      <div className="header">
-        <h1>RANDO: A MOVIE GENERATOR</h1>
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-        <MoviePoster poster={movieData.poster} title={movieData.title} imdbId={movieData.imdbId} />
-      </div>
-      <button className="button" onClick={generate} disabled={isLoading}>
-        {isLoading ? <LoadingSpinner /> : 'Generate'}
+      <><header>
+        <div className='header-column'>
+          <MovieSearch onSearch={handleSearch} />
+        </div>
+        <div className='header-column center-column'>
+      <button className="button" id='generateButton' onClick={generate} disabled={isLoading}>
+      {isLoading ? <LoadingSpinner /> : 'Generate'}
       </button>
-      <GenreFilter onSelectGenre={handleGenreSelect} />
-      <div className="content">
-        <div className="content-left">
-          <MovieDetails
-            title={movieData.title}
-            genre={movieData.genre}
-            year={movieData.year}
-            actors={movieData.actors}
-            plot={movieData.plot}
-            runtime={movieData.runtime}
-          />
+      </div>
+      <div className='header-column'>
+      <Dropdown
+        className="dropdown-container"
+        onSelect={handleProfileMenuSelect}
+        auto-close="true"
+        >
+        <Dropdown.Toggle variant="success" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true">
+          Hello {currentUser ? currentUser.displayName || currentUser.email : 'Guest'}
+          <span className='dropdown-arrow'>&#9660;</span>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu class="dropdown-menu" autoClose="true">
+        <Dropdown.Item eventKey="favorites">
+        <span>&#10084;</span> Favorites
+        </Dropdown.Item>
+        <Dropdown.Item eventKey="logout">
+        <span>&#128274;</span> Logout
+          </Dropdown.Item>
+        </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    </header>
+    <div className="container">
+      <div className='container-column-poster'>
+        <MoviePoster poster={movieData.poster} title={movieData.title} imdbId={movieData.imdbId} />
+        </div>
+        <div className='container-column-data'>
+        <div className="content">
+          <div className="content-left">
+            <MovieDetails
+              title={movieData.title}
+              genre={movieData.genre}
+              year={movieData.year}
+              actors={movieData.actors}
+              plot={movieData.plot}
+              runtime={movieData.runtime} />
+              <button className={`button_plus ${buttonPlusClass}`} onClick={addToFavorites}></button>
+
+              <GenreFilter id='genreFilterButton' onSelectGenre={handleGenreSelect} />
+          </div>
         </div>
       </div>
-    </div>
+      <div className="footer">
+        <h3>Contact</h3>
+        <p>Created by: <a href="https://github.com/fernan17893">Fern</a></p>
+        <p>API: <a href="https://www.themoviedb.org/documentation/api">The Movie Database API</a></p>
+        <p>Powered by: <a href="https://firebase.google.com/">Firebase</a></p>
+        <img src={logo} alt="logo" />
+      </div>
+
+      </div></>
   );
 }
 

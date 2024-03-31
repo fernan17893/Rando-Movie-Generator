@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { auth } from '../firebase.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import '../index.css'; // Import your styles
-
+import logo from '../assets/logo.png'; // Import your logo
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,9 +43,9 @@ const Login = () => {
   };
 
   return (
-    <div className={`login-container${isSignUp ? ' signup-mode' : ''}`}>
+    <div className={`login-container${isSignUp ? ' signup-mode' : ''}`} >
       <div className="login-box">
-        <h2>Rando: A Movie Generator!</h2>
+        <img src={logo} alt="Rando Logo" />
         <input
           type="email"
           placeholder="Email"

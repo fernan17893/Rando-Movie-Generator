@@ -5,38 +5,56 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  margin: 10px;
-  background-color: #f1eeec;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Make sure the body covers at least the full viewport height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  
+  
+  
+  /* background-image: url('./assets/HomepagePosters.jpg');*/
 }
 
-.container {
+
+header {
+  background-color: #fff;
+  min-width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: 50px;
-  margin: 0 auto;
-  max-width: 1500px;
-  min-width: 100vh;
-  flex: 1; /* Expand to fill the available vertical space */
+  justify-content: space-between;
+  padding: 25px;
+  margin-bottom: 10px;
+  
+  
+  
 }
 
-.header {
-  font-family: LimeLight;
-  font-size: 15px;
+.header-column {
+  flex: 1;
+  text-align: center;
 }
 
-/* Login.css */
+.center-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* Login Styles */
 
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  min-height: 100vh;
   background-image: url('./assets/HomepagePosters.jpg');
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .login-box {
@@ -45,7 +63,9 @@ body {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 400px;
+  max-width: 400px;
+  width: 80%;
+  overflow-y: auto;
 }
 
 h2 {
@@ -98,74 +118,153 @@ button {
   }
 }
 
+/* Container styling */
 
+.container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
 
+.container-column-poster,
+.container-column-data {
+  flex: 1;
+  box-sizing: border-box;
+  min-height: 750px;
+ 
+}
 
+.container-column-poster {
+  background-color: rgb(21, 20, 20);
+  
+  
+}
+
+.container-column-data {
+  background-image: url('./assets/movieDetails.jpg');
+}
 
 /* Poster styling */
+
+
+.poster-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 100%;
+
+}
+
 .poster {
   margin-right: 20px;
   max-width: 3000px;
   min-width: 500px;
-  
-}
-
-.poster img {
-  width: 100%;
-  border-radius: 8px;
   transition: transform 0.3s ease-in-out;
-  outline-style: ridge;
-  
-  outline-color: #222;
 }
 
-.poster img:hover {
+
+.poster:hover {
   transform: scale(1.1);
   cursor: pointer;
-}
+} 
+
+
+
+
 
 /* Content styling */
 .content {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin-left: 20px;
-  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  top: 5vh;
-  right: 5vh;
-  align-items: flex-start;
+  top: 10vh;
+  min-height: 50%;
+  z-index: 1;
 }
 
 .content-left {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  max-width: calc(100% - 100px);
+  min-width: calc(100% - 100px);
+  min-height: 60vh;
   margin-left: 20px;
-  margin-right: 20px;
+  
+}
+
+/* Dropdown container */
+.dropdown-container {
   position: relative;
-  top: 2vh;
-  right: 5vh;
-  align-items: flex-start;
+}
+
+/* Dropdown button */
+.dropdown-toggle {
+  padding: 10px 20px;
+  background-color: white;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Dropdown button */
+.dropdown-arrow {
+  margin-left: 5px;
+  font-size: 10px;
+}
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #ddd;
 }
 
 
-/*Buttons */
+
+
+
+
+/* Buttons & Search */
 .button {
-  /* Basic styling */
   background-color: #222;
   color: #fff;
+  padding: 35px 42px;
   border: none;
-  padding: 22px 30px;
   border-radius: 5px;
   font-family: sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  right: 5vh;
+  position: absolute;
+  margin-right: 25px;
+  
+  
+ 
 
-  /* Visual enhancements */
-  position: relative; /* Position the button within the container */
-  overflow: hidden;
 
   /* Play icon integration */
   &::before {
@@ -176,8 +275,8 @@ button {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background-image: url("https://www.friidesigns.com/wp-content/uploads/2018/11/white-play-icon-png-6.png"); /* Replace with your icon URL */
-    background-size: 50%; /* Adjust icon size as needed */
+    background-image: url("https://www.friidesigns.com/wp-content/uploads/2018/11/white-play-icon-png-6.png"); /* Play Icon on Generate Button */
+    background-size: 50%; 
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.2;
@@ -191,28 +290,131 @@ button {
     }
   }
 
-  /* Preserved styling from original .button class */
-  margin-bottom: 20px;
-  margin-left: 150px;
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-  float: right;
+ 
 }
 
 .logout-button {
-  background-color: #222;
+    background-color: #222;
   color: #fff;
   border: none;
-
   border-radius: 5px;
   font-family: sans-serif;
   font-weight: 600;
   cursor: pointer;
-  position: absolute; /* Position the button absolutely within the container */
-  top: 10vh;
-  right: 30vh;
-  outline: none; 
+  position: absolute;
+  top:9.8vh; /* Adjust the top position as needed */
+  right: 22vh; /* Position the logout button to the right */
+  outline: none;
 }
+
+.button_plus {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  background: #f0f0f0;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  bottom: 7.2vh;
+  left: 5vh;
+  
+}
+
+.button_plus:after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 50%;
+  background: green;
+  top: 50%;
+  left: 50%;
+}
+
+.button_plus:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: green;
+  height: 50%;
+  width: 4px;
+}
+
+.button_plus:hover:before,
+.button_plus:hover:after {
+  background: #fff;
+  transition: 0.2s;
+}
+
+.button_plus:hover {
+  background-color: green;
+  transition: 0.2s;
+}
+
+@keyframes buttonPlusAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button-plus-animate {
+  animation: buttonPlusAnimation 1s ease forwards;
+}
+
+
+/* Search bar styling */
+.movie-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 80%; /* Adjusted width for better visibility */
+  max-width: 600px; /* Maximum width for larger screens */
+  margin: 20px auto; /* Centered the search bar */
+}
+
+.search-input {
+  background-color: #f4f4f4; /* Light background color */
+  padding: 10px 20px;
+  border: none; /* Removed border for a cleaner look */
+  border-radius: 25px; /* Rounded corners */
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  outline: none;
+  transition: background-color 0.3s ease-in-out; /* Added transition for a smoother effect */
+
+  /* Placeholder style */
+  &::placeholder {
+    color: #999; /* Lighter text color for placeholder */
+  }
+
+  /* Hover effect */
+  &:hover {
+    background-color: #e0e0e0; /* Darker background on hover */
+  }
+
+  /* Focus effect */
+  &:focus {
+    background-color: #d8d8d8; /* Darker background on focus */
+  }
+}
+
+/* ... (Other styles remain unchanged) */
 
 
 /* Filter styling */
@@ -220,15 +422,16 @@ button {
 /* GenreFilter.css */
 .genre-filter {
   align-items: center;
-  margin-right: 20px;
   margin-bottom: 20px;
-  position: absolute;
-  top: 8vh;
-  right: 40vh;
-  margin-top: 20px;
-  
+  position: relative;
+  bottom: 10.6vh;
+  left: 15vh;
  
 
+}
+
+.genre-filter.hidden {
+  display: none;
 }
 
 .genre-filter label {
@@ -242,10 +445,10 @@ button {
   background-color: #222;
   color: #fff;
   border: none;
-  padding: 10px 20px; 
+  padding: 10px 22px; 
   border-radius: 5px;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   outline: none; /* Remove the default outline */
 }
@@ -268,20 +471,24 @@ button {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   flex: 1;
-  margin-right: 20px;
-  margin-left: 100px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  
-
+  margin-right: auto;
+  margin-left: 20px;
+  width: 90%;
+  height: 120%;
+  position: relative;
+  bottom: 1h;
+  max-width: 100%;
+  min-width: 80%;
 }
+
 
 .movie-title {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
+  align-self: center;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .movie-genre,
@@ -296,66 +503,432 @@ button {
 
 /* Footer styling */
 
-.footer{
-  position: fixed;
-  margin-top: auto;
-  right: 30vh;
+.footer {
+  background-color: #fff;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 100vh;
+  left: 0;
 }
 
 .footer p {
   
   font-size: 14px;
-  color: #666;
+  color: #333;
+}
+
+.footer p, h3 {
+  display: flex;
+  padding-left: 11.2%;
   
 }
 
+.footer h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #333;
+  text-align: center;
+  min-width: 100%;
+
+}
+
+.footer h3, h1 {
+  font-family: LimeLight;
+  
+}
+
+.footer img {
+  bottom: 15vh;
+  left: 60vh;
+  position: relative;
+  width: 280px;
+}
+
 .footer a {
-  color: #3498db;
+  top: auto;
+  color: #333;
 }
 
 
 
-/* Responsive Styles  WORK IN PROGRESS UNFINISHED */
-  /* Responsive Styles */
-@media (max-width: 812px) {
-  .container {
-    flex-direction: column;
-    overflow-x: hidden;
-  }
 
-  .header h1 {
-    display: none;
-  }
+/* Favorites */
+.favorite-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-image: url('./assets/Untitled\ Project.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 20%;
+}
 
-  .poster {
-    margin-bottom: 20px;
-    max-width: 350px;
-    min-width: 350px;
-  }
 
-  .poster img {
-    max-width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-    outline-style: ridge;
-    outline-color: #222;
-  }
+.home-button {
+  background-color: #222;
+  color: #fff;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  top: 3vh;
+  right: 30vh;
+  outline: none;
+}
 
-  .genre-filter {
-    margin-bottom: 20px;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 80px;
+  list-style: none;
+  padding: 20px;
+  
+}
+
+.fave-container {
+  position: relative;
+  margin-bottom: 20px;
+  max-width: 200px;
+  min-width: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fave-container .poster {
+  margin-right: 0;
+  max-width: 200px;
+  min-width: 200px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  border-radius: 8px;
+  position: relative;
+  border: #f0f0f0;
+  border-style: solid;
+}
+
+.fave-container .poster:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.fave-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+
+
+.remove-favorite {
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3 ease-in-out;
+ 
+}
+
+.fave-container:hover .remove-favorite {
+  opacity: 1;
+}
+
+.remove-favorite:hover {
+  background-color: darkred;
+}
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;  
+  position: relative;
+  left: 10vh;
+  width: 80%;
+  max-width: 80%;
+  min-width: 80%;
+  border-radius: 8px;
+  z-index: 1;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 10vh;  
+}
+
+.favorites-header h2 {
+  flex-grow: 1;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+.dropdown-favorites-container {
+  position: relative;
+}
+
+.dropdown-favorites-container .dropdown-toggle {
+  background-color: transparent; 
+  color: white; 
+  border: none;
+  
+}
+
+.dropdown-favorites-container .dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+  
+  header {
+    background-color: #fff;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    margin-bottom: 10px;
+    
+    
+    
+  }
+  
+  .header-column {
+    flex: 1;
     text-align: center;
   }
-
-  .result-area {
-    max-width: 100%;
-    height: 50%;
+  
+  .center-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
   }
-
-  .footer {
-    right: 0;
+  
+  
+ 
+  
+  
+  
+  /* Favorites */
+  .favorite-movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url('./assets/Untitled\ Project.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 20%;
   }
-}
+  
+  
+  .home-button {
+    background-color: #222;
+    color: #fff;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    top: 3vh;
+    right: 30vh;
+    outline: none;
+  }
+  
+  .movies-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 80px;
+    list-style: none;
+    padding: 20px;
+    
+  }
+  
+  .fave-container {
+    position: relative;
+    margin-bottom: 20px;
+    max-width: 200px;
+    min-width: 200px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fave-container .poster {
+    margin-right: 0;
+    max-width: 200px;
+    min-width: 200px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    border-radius: 8px;
+    position: relative;
+    border: #f0f0f0;
+    border-style: solid;
+  }
+  
+  .fave-container .poster:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  .fave-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+  }
+  
+  
+  
+  .remove-favorite {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3 ease-in-out;
+   
+  }
+  
+  .fave-container:hover .remove-favorite {
+    opacity: 1;
+  }
+  
+  .remove-favorite:hover {
+    background-color: darkred;
+  }
+  
+  .favorites-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;  
+    position: relative;
+    left: 10vh;
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    border-radius: 8px;
+    z-index: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 10vh;  
+  }
+  
+  .favorites-header h2 {
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+    margin: 0;
+  }
+  
+  .dropdown-favorites-container {
+    position: relative;
+  }
+  
+  .dropdown-favorites-container .dropdown-toggle {
+    background-color: transparent; 
+    color: white; 
+    border: none;
+    
+  }
+  
+  .dropdown-favorites-container .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  @media (max-width: 812px) {
+    .movie-search {
+      display: none; 
+    }
+
+   .dropdown-container {
+      display: none;
+   }
+   
+   .poster-container {
+    background-color: white;
+   }
+
+   .poster{
+    max-width: 20px;
+    min-width: 350px;
+    right: 1vh;
+   }
+
+    
+    .container, .content, .content-left, .container-column-poster, .container-column-data {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+    }
+
+    .result-area {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      max-height: fit-content;
+    }
+  
+    .container-column-poster, .container-column-data {
+      min-height: auto; /* Adjust based on content */
+    }
+  
+    .poster, .button, .dropdown-container, .genre-filter, .favorites-header {
+      position: relative; /* Reset position if previously set to absolute */
+      margin: 10px auto; /* Center horizontally and add some vertical spacing */
+      width: auto; /* Reset width or set to specific value if necessary */
+    }
+  
+    .footer {
+      position: relative; /* Position footer normally below the content */
+      top: auto; /* Reset top property */
+      margin-top: 20px; /* Space between content and footer */
+    }
+  
+    .movies-list, .fave-container {
+      grid-template-columns: 1fr; /* Adjust grid layout for single column */
+      justify-content: center;
+      width: 100%; /* Adjust the width as necessary */
+    }
+  
+    .fave-container {
+      max-width: 90%; /* Adjust based on desired container width */
+    }
+
+    .button_plus{
+      display: none;
+    }
+
+    .genre-filter {
+      display: none;
+    }
+  }
+  
+  

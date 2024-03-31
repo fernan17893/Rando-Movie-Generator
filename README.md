@@ -17,7 +17,7 @@ Rando utilizes the [The Movie Database (TMDb) API](https://www.themoviedb.org/do
 
 ## Getting Started
 
-1. Enter fernan178.github.io/rando-movie-generator/ in your browser.
+1. Enter [fernan17893.github.io/rando-movie-generator/](https://fernan17893.github.io/) in your browser.
 2. Log in with your email or password/ Sign up if you don't have an account.
 3. Click the "Generate" button to get a random movie suggestion.
 - **Note:** You must be logged in to generate a random movie suggestion.

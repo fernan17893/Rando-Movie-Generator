@@ -1,5 +1,6 @@
 // components/MoviePoster.js
 import React from 'react';
+import '../index.css';
 
 function MoviePoster({ poster, title, imdbId }) {
 
@@ -14,8 +15,8 @@ function MoviePoster({ poster, title, imdbId }) {
   };
 
   return (
-   <div className="poster" onClick={handlePosterClick}>
-    <img src={poster} alt={title} />
+   <div className='poster-container'>
+    <img className="poster" src={poster} alt={title} onClick={handlePosterClick}/>
     </div>
   );
 }

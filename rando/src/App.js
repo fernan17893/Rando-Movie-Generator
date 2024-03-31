@@ -29,9 +29,6 @@ function App() {
   return (
     <div className="App">
       {user ? <MovieGenerator /> : <Login />}
-      <div className="footer">
-        <p>Created by: <a href="https://github.com/fernan17893">Fern</a></p>
-      </div>
     </div>
     
   );
