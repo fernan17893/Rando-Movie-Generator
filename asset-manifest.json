@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.3ea1daa5.css",
-    "main.js": "/static/js/main.27fa6bdb.js",
-    "static/js/488.0017cf81.chunk.js": "/static/js/488.0017cf81.chunk.js",
-    "static/media/HomepagePosters.jpg": "/static/media/HomepagePosters.c834c86dd4bec649b089.jpg",
-    "static/media/Untitled Project.jpg": "/static/media/Untitled Project.46ad9f89345032933ec7.jpg",
-    "static/media/movieDetails.jpg": "/static/media/movieDetails.9d8dcc865390e6e7589c.jpg",
-    "static/media/Limelight-1XzM.ttf": "/static/media/Limelight-1XzM.9b2c7498480d10196edb.ttf",
-    "static/media/logo.png": "/static/media/logo.a3509c38f56d71e847b4.png",
-    "static/media/no-poster-available.jpg": "/static/media/no-poster-available.7555b15218a0f4733bf7.jpg",
-    "index.html": "/index.html",
-    "main.3ea1daa5.css.map": "/static/css/main.3ea1daa5.css.map",
-    "main.27fa6bdb.js.map": "/static/js/main.27fa6bdb.js.map",
-    "488.0017cf81.chunk.js.map": "/static/js/488.0017cf81.chunk.js.map"
+    "main.css": "/Rando-Movie-Generator/static/css/main.c5f7a9ba.css",
+    "main.js": "/Rando-Movie-Generator/static/js/main.0238bcc5.js",
+    "static/js/488.0017cf81.chunk.js": "/Rando-Movie-Generator/static/js/488.0017cf81.chunk.js",
+    "static/media/HomepagePosters.jpg": "/Rando-Movie-Generator/static/media/HomepagePosters.c834c86dd4bec649b089.jpg",
+    "static/media/Untitled Project.jpg": "/Rando-Movie-Generator/static/media/Untitled Project.46ad9f89345032933ec7.jpg",
+    "static/media/movieDetails.jpg": "/Rando-Movie-Generator/static/media/movieDetails.9d8dcc865390e6e7589c.jpg",
+    "static/media/Limelight-1XzM.ttf": "/Rando-Movie-Generator/static/media/Limelight-1XzM.9b2c7498480d10196edb.ttf",
+    "static/media/logo.png": "/Rando-Movie-Generator/static/media/logo.a3509c38f56d71e847b4.png",
+    "static/media/no-poster-available.jpg": "/Rando-Movie-Generator/static/media/no-poster-available.7555b15218a0f4733bf7.jpg",
+    "index.html": "/Rando-Movie-Generator/index.html",
+    "main.c5f7a9ba.css.map": "/Rando-Movie-Generator/static/css/main.c5f7a9ba.css.map",
+    "main.0238bcc5.js.map": "/Rando-Movie-Generator/static/js/main.0238bcc5.js.map",
+    "488.0017cf81.chunk.js.map": "/Rando-Movie-Generator/static/js/488.0017cf81.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3ea1daa5.css",
-    "static/js/main.27fa6bdb.js"
+    "static/css/main.c5f7a9ba.css",
+    "static/js/main.0238bcc5.js"
   ]
 }
