@@ -505,225 +505,36 @@ button {
 
 .footer {
   background-color: #fff;
-  text-align: center;
-  width: 100%;
+  min-width: 100%;
+  max-width: fit-content;
   position: absolute;
   top: 100vh;
   left: 0;
-}
-
-.footer p {
-  
-  font-size: 14px;
-  color: #333;
-}
-
-.footer p, h3 {
   display: flex;
-  padding-left: 11.2%;
-  
-}
-
-.footer h3 {
-  font-size: 20px;
-  font-weight: 800;
-  color: #333;
-  text-align: center;
-  min-width: 100%;
-
-}
-
-.footer h3, h1 {
-  font-family: LimeLight;
-  
-}
-
-.logo_img {
-  width: 200px;
-  height: 200px;
-  margin-left: 70%;
-  margin-top: -120px;
-  padding: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.footer a {
-  top: auto;
-  color: #333;
-}
-
-
-
-
-/* Favorites */
-.favorite-movies {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-image: url('./assets/Untitled\ Project.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  padding-bottom: 20%;
-}
-
-
-.home-button {
-  background-color: #222;
-  color: #fff;
-  padding: 5px 15px;
-  border: none;
-  border-radius: 5px;
-  font-family: sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  position: absolute;
-  top: 3vh;
-  right: 30vh;
-  outline: none;
-}
-
-.movies-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
-  gap: 80px;
-  list-style: none;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   
 }
 
-.fave-container {
-  position: relative;
-  margin-bottom: 20px;
-  max-width: 200px;
-  min-width: 200px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.fave-container .poster {
-  margin-right: 0;
-  max-width: 200px;
-  min-width: 200px;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  border-radius: 8px;
-  position: relative;
-  border: #f0f0f0;
-  border-style: solid;
-}
-
-.fave-container .poster:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.fave-title {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color: #fff;
-}
-
-
-
-.remove-favorite {
+.footer_column {
+  display: flex;
+  flex-direction: column;
   
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  background-color: red;
-  border-radius: 50%;
-  color: white;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3 ease-in-out;
- 
+  
 }
 
-.fave-container:hover .remove-favorite {
-  opacity: 1;
-}
-
-.remove-favorite:hover {
-  background-color: darkred;
-}
-
-.favorites-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;  
-  position: relative;
-  left: 10vh;
-  width: 80%;
-  max-width: 80%;
-  min-width: 80%;
-  border-radius: 8px;
-  z-index: 1;
+.footer p, .footer h3 {
+  margin: 10px 20;
   margin-left: 20px;
-  margin-right: 20px;
-  height: 10vh;  
-}
-
-.favorites-header h2 {
-  flex-grow: 1;
-  text-align: center;
-  color: white;
-  margin: 0;
-}
-
-.dropdown-favorites-container {
-  position: relative;
-}
-
-.dropdown-favorites-container .dropdown-toggle {
-  background-color: transparent; 
-  color: white; 
-  border: none;
   
 }
 
-.dropdown-favorites-container .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.5);
+.logo_img {
+ align-items: flex-end;
+  margin-right: 40px;
 }
 
-  
-  header {
-    background-color: #fff;
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px;
-    margin-bottom: 10px;
-    
-    
-    
-  }
-  
-  .header-column {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .center-column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-  }
-  
-  
- 
-  
   
   
   /* Favorites */
@@ -765,16 +576,17 @@ button {
   
   .fave-container {
     position: relative;
-    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
     max-width: 200px;
     min-width: 200px;
-    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
   }
   
   .fave-container .poster {
     margin-right: 0;
     max-width: 200px;
     min-width: 200px;
+    min-height: 200px;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     border-radius: 8px;
     position: relative;
@@ -886,13 +698,12 @@ button {
    }
    
    .poster-container {
-    background-color: white;
+    background-color: transparent;
    }
 
    .poster{
     max-width: 20px;
     min-width: 350px;
-    right: 1vh;
    }
 
     
@@ -937,6 +748,7 @@ button {
       position: relative; /* Position footer normally below the content */
       top: auto; /* Reset top property */
       margin-top: 20px; /* Space between content and footer */
+      justify-content: center;
     }
 
     .logo_img{
@@ -946,11 +758,11 @@ button {
     .movies-list, .fave-container {
       grid-template-columns: 1fr; /* Adjust grid layout for single column */
       justify-content: center;
-      width: 100%; /* Adjust the width as necessary */
+      
     }
   
     .fave-container {
-      max-width: 90%; /* Adjust based on desired container width */
+      
     }
 
     .button_plus{

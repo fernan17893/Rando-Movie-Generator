@@ -258,10 +258,12 @@ function MovieGenerator() {
         </div>
       </div>
       <div className="footer">
+        <div className="footer-column">
         <h3>Contact</h3>
         <p>Created by: <a href="https://github.com/fernan17893">Fern</a></p>
         <p>API: <a href="https://www.themoviedb.org/documentation/api">The Movie Database API</a></p>
         <p>Powered by: <a href="https://firebase.google.com/">Firebase</a></p>
+        </div>
         <img className='logo_img' src={logo} alt="logo" />
       </div>
       
